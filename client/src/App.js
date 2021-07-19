@@ -27,14 +27,16 @@ export default function App () {
   }, []);
 
   const addToSavedList = movie => {
-    let list = saved;
-    for (let i = 0; i < list.length; i++){
-      if (list[i].id === movie.id){
-        return list;
+    const list = saved;
+    if (list.length !== 0){
+      for (let i = 0; i < list.length; i++){
+        if (list[i].id === movie.id){
+          return list;
+        }
       }
+      list.push(movie);
+      setSaved(list);
     }
-    list.push(movie);
-    setSaved(list);
   };
 
   return (
