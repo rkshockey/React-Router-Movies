@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import SavedList from './Movies/SavedList';
 import MovieList from './Movies/MovieList';
@@ -16,7 +16,6 @@ export default function App () {
         .get('http://localhost:5000/api/movies') // Study this endpoint with Postman
         .then(response => {
           setMovieList(response.data);
-          console.log(movieList)
           // Study this response with a breakpoint or log statements
           // and set the response data as the 'movieList' slice of state
         })
@@ -37,7 +36,7 @@ export default function App () {
 
       <Switch>
         <Route exact to='/'>
-          <MovieList />
+          <MovieList movies={movieList} />
         </Route>
         <Route to='/movies/:id'>
           <Movie />
